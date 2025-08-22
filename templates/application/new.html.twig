@@ -1,15 +1,18 @@
 {% extends 'base.html.twig' %}
+{% set route = app.request.attributes.get('_route') %}
 
-{% block title %}Inscription{% endblock %}
-{% block ogtitle %}Inscription{% endblock %}
+{% block title %}{{ route == 'app_home' ? 'Inscription' : 'Inscription spéciale' }}{% endblock %}
+{% block ogtitle %}{{ route == 'app_home' ? 'Inscription' : 'Inscription spéciale' }}{% endblock %}
 
 {% block class_body %}contact-page{% endblock %}
 {% block body %}
-    {% set route = app.request.attributes.get('_route') %}
-    {% include 'common/page_title.html.twig' with {title:'Inscription'} %}
+    {% if route == 'app_home' %}
+        {% include 'common/page_title.html.twig' with {title:'Inscription'} %}
+    {% else %}
+        {% include 'common/page_title.html.twig' with {title:'Inscription spéciale'} %}
+    {% endif %}
 
     <main class="contact section">
-
         <div class="container pb-2">
             <h6 class="fw-bold">Recherche :</h6>
             <form class="navbar-search pull-left mb-3" method="get" action="{{ path('app_application_search') }}">
@@ -27,7 +30,13 @@
                 <div class="m-3">
                     {{ conditions.content | raw }}
                 </div>
-                <h1 class="fw-bold text-center my-3">Fiche de préinscription</h1>
+
+                {% if route == 'app_home' %}
+                    <h1 class="fw-bold text-center my-3">Fiche de préinscription</h1>
+                {% else %}
+                    <h1 class="fw-bold text-center my-3">Fiche de demande d'inscription spéciale</h1>
+                {% endif %}
+
                 <div class="card-header bg-danger text-white"></div>
                 {{ form_start(form, {'attr': {class: 'php-email-form'}}) }}
                 <div class="mx-3">
@@ -159,7 +168,7 @@
                 {% endif %}
                 <hr>
                 <div class="mx-3">
-                    <h2 class="h4 fw-bold">2. Ecole secondaire fréquentée</h2>
+                    <h2 class="h4 fw-bold">3. Ecole secondaire fréquentée</h2>
                     <div class="mb-3 row">
                         <div class="col-md-4">
                             {{ form_row(form.scName) }}
@@ -205,7 +214,7 @@
                 </div>
                 <hr>
                 <div class="mx-3">
-                    <h2 class="h4 fw-bold">3. Personne à prévenir en cas d’urgence</h2>
+                    <h2 class="h4 fw-bold">4. Personne à prévenir en cas d’urgence</h2>
                     <div class="mb-3 row">
                         <div class="col-md-3">
                             {{ form_row(form.urgName) }}
@@ -223,7 +232,7 @@
                 </div>
                 <hr>
                 <div class="mx-3">
-                    <h2 class="h4 fw-bold">4. Identité du père ou tuteur légal</h2>
+                    <h2 class="h4 fw-bold">5. Identité du père ou tuteur légal</h2>
                     <div class="mb-3 row">
                         <div class="col-md-3">
                             {{ form_row(form.fatherName) }}
@@ -241,7 +250,7 @@
                 </div>
                 <hr>
                 <div class="mx-3">
-                    <h2 class="h4 fw-bold">5. Identité de la mère ou tutrice légale</h2>
+                    <h2 class="h4 fw-bold">6. Identité de la mère ou tutrice légale</h2>
                     <div class="mb-3 row">
                         <div class="col-md-3">
                             {{ form_row(form.motherName) }}
@@ -258,7 +267,7 @@
                     </div>
                 </div>
                 <div class="mx-3">
-                    <h2 class="h4 fw-bold">6. Autres informations</h2>
+                    <h2 class="h4 fw-bold">7. Autres informations</h2>
                     <div class="mb-3 row">
                         <div class="col-md-6">
                             {{ form_row(form.provinceOrigin) }}

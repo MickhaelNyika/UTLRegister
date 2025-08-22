@@ -87,7 +87,7 @@ class ApplicationController extends AbstractController
         }
 
         return $this->render('application/new.html.twig', [
-            'conditions' => $repo->find(1),
+            'conditions' => $repo->find(2),
             'st_pre_registration' => $candidate,
             'form' => $form->createView(),
         ]);
