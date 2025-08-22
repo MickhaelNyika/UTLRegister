@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}News
+{% endblock %}
+
+{% block body %}
+	<main id="main">
+		{{ include('common/page_title.html.twig', {title: page_title is defined ? page_title : 'News' }) }}
+		<!-- ======= blogs Section ======= -->
+		<section id="blog" class="blog">
+			<div class="container" data-aos="fade-up">
+				<div class="row g-5">
+					<div class="col-lg-8">
+						<div class="posts-list">
+							{% for item in blogs %}
+								{{ include('news/card_detail.html.twig', {item:item}) }}
+							{% else %}
+								<div class="col-md-12" style="height:150px;">
+									<div class="breadcrumbs pt-4">
+										<div class="container">
+											<div class=" align-items-center">
+												<h2 class="fw-bold text-danger text-center" data-aos="zoom-out">Aucun élément trouvé...</h2>
+											</div>
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+							<!-- End post list item -->
+						</div>
+						<div class="d-flex flex-column justify-content-between align-items-center my-5">
+							{{ knp_pagination_render(blogs)}}
+						</div>
+					</div>
+
+					<div class="col-lg-4 shadow-sm">
+						<div class="sidebar shadow-none">
+							{% include "common/miniside.html.twig" %}
+							<!-- End sidebar categories-->
+							<div class="sidebar-item recent-posts">
+								<h3 class="sidebar-title">Recent Posts</h3>
+								<div class="mt-3">
+									{% for item in posts %}
+										<div class="post-item mt-3 row">
+											<div class="col-md-4">
+												<img src="{{ vich_uploader_asset(item, 'imgFile') | imagine_filter('card')}}" alt="" class="flex-shrink-0 w-100">
+											</div>
+											<div class="col-md-8">
+												<h6>
+													<a class="text-secondary" href="{{ path('app_news_details', {slug:item.slug}) }}">
+														{{ item.title|slice(0,70) }}...
+													</a>
+												</h6>
+												<time datetime="2020-01-01"><span>{{item.createdAt|date('Y')}}</span></time>
+											</div>
+										</div>
+										<!-- End recent post item-->
+									{% endfor %}
+								</div>
+							</div>
+							<!-- End sidebar recent posts-->
+						</div>
+						<!-- End blogs Sidebar -->
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End blogs Section -->
+	</main>
+	<!-- End #main -->
+{% endblock %}

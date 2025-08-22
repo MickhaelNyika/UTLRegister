@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+		<title>UTL - {% block title %}Université Technologique du Lualaba{% endblock %}</title>
+		<meta content="{% block desc %}L’Université Technologique du Lualaba est un établissement d’enseignement supérieur et universitaire privé, implanté à Kolwezi, Province du Lualaba{% endblock %}" name="description">
+		<meta content="UTL" name="keywords">
+		<link href="/assets/img/favicon.png" rel="icon">
+		<link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+		<meta name="application-name" content="Université Technologique du Lualaba">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="{% block ogtitle %}Accueil{% endblock %} - Université Technologique du Lualaba">
+		<meta property="og:url" content="{% block url %}{{ app.request.uri }}{% endblock %}">
+		<meta property="og:description" content="{% block ogdesc %}L’Université Technologique du Lualaba est un établissement d’enseignement supérieur et universitaire privé, implanté à Kolwezi, Province du Lualaba{% endblock %}">
+		<meta property="og:site_name" content="Université Technologique du Lualaba">
+		<meta property="og:image" content={% block ogimg %} "https://www.utlualaba.cloud/assets/img/logo.png" {% endblock %}>
+		<meta property="og:image:width" content="1200"/>
+		<meta property="og:image:height" content="627"/>
+		<meta property="og:locale" content="fr_FR">
+		<meta name="msapplication-TileImage" content="/assets/img/logo.png">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="blue">
+		<link href="https://fonts.googleapis.com" rel="preconnect">
+		<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+			{# % block importmap %}{{ importmap('app') }}{% endblock %#}
+		{% endblock %}
+	</head>
+	<body class="{% block class_body %}index-page{% endblock %}">
+		{% include 'common/nav.html.twig' %}
+		{% block body %}{% endblock %}
+		{% include 'common/footer.html.twig' %}
+		<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center bg-danger">
+			<i class="bi bi-arrow-up-short"></i>
+		</a>
+		<div id="preloader">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</body>
+</html>

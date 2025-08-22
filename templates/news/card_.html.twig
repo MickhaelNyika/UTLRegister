@@ -1,0 +1,19 @@
+<div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+    <div class="service-item mx-1 my-3 shadow-sm" style="background-color: #F0F0F0">
+        <div class="img rounded-0 bg-danger">
+            <a href="{{ path('app_news_details', {slug:item.slug}) }}" class="stretched-link">
+                <img src="{{ vich_uploader_asset(item, 'imgFile') | imagine_filter('card_blg')}}" class="img-fluid rounded-0 w-100" alt="{{ item.title }}">
+            </a>
+        </div>
+        <div class="p-3" style="height: 200px">
+            <a href="{{ path('app_news_details', {slug:item.slug}) }}" class="stretched-link">
+                <h6 class="fw-bold mt-2" style="text-align: justify!important;">{{ item.title }}</h6>
+            </a>
+            <p class="small" style="text-align: justify!important;">{{ item.extract | slice(0, 120) }}...</p>
+
+            <div class="position-absolute bottom-0 end-0 m-4">
+                <a class="small" href="{{ path('app_news_details', {slug:item.slug}) }}">En savoir plus... <i class="bi bi-arrow-bar-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>

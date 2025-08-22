@@ -1,0 +1,18 @@
+<div data-aos="zoom-in" data-aos-delay="200">
+    <div class="service-item mx-1 my-3 row">
+        <div class="col-md-8">
+            <a href="{{ path('app_news_details', {slug:item.slug}) }}" class="text-secondary">
+                <h6 class="fw-bold mt-2" style="text-align: justify!important;">{{ item.title }}</h6>
+            </a>
+            <p class="small" style="text-align: justify!important;">{{ item.extract | slice(0, 120) }}...</p>
+            <a class="small text-secondary" href="{{ path('app_news_details', {slug:item.slug}) }}">{{ item.createdAt | date('d/m/Y') }}</a>
+        </div>
+        <div class="img rounded-0 col-md-4">
+            <a href="{{ path('app_news_details', {slug:item.slug}) }}" class="stretched-link">
+                <img src="{{ vich_uploader_asset(item, 'imgFile') | imagine_filter('card_blg')}}" class="img-fluid rounded-0 w-100" alt="{{ item.title }}">
+                <img src="{{ vich_uploader_asset(item, 'imgFile') | imagine_filter('mgm')}}" class="d-none" style="width: 1px">
+            </a>
+        </div>
+    </div>
+    <hr>
+</div>

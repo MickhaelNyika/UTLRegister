@@ -1,0 +1,9 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^www.inscription.utlualaba.cloud$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^inscription.utlualaba.cloud$
+RewriteCond %{REQUEST_URI} !public/
+RewriteRule (.*) /public/$1 [L]
+#
+#RewriteEngine On
+#RewriteRule ^$ public/index.php [L]
+#RewriteRule !^public/ public%{REQUEST_URI} [L,NC]

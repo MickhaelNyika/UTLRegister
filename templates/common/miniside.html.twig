@@ -1,0 +1,21 @@
+<div class="sidebar-item search-form">
+	<h3 class="sidebar-title">Recherche</h3>
+	<form method="get" action="{{ path('app_news_search')}}" class="mt-3">
+		<input name="q" type="text">
+		<button type="submit">
+			<i class="bi bi-search"></i>
+		</button>
+	</form>
+</div>
+<!-- End sidebar search formn-->
+<div class="sidebar-item categories">
+	<h3 class="sidebar-title">Categories</h3>
+	<ul class="mt-3">
+		{% for item in app.session.get("Cat") %}
+			<li>
+				<a href="{{ path('app_news_category', {slug:item.slug}) }}" class="text-secondary">{{item.name}} <span>{{item.blogs|length}}</span>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+</div>

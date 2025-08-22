@@ -1,0 +1,279 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+{% block ogtitle %}Inscription{% endblock %}
+
+{% block class_body %}contact-page{% endblock %}
+{% block body %}
+    {% set route = app.request.attributes.get('_route') %}
+    {% include 'common/page_title.html.twig' with {title:'Inscription'} %}
+
+    <main class="contact section">
+
+        <div class="container pb-2">
+            <h6 class="fw-bold">Recherche :</h6>
+            <form class="navbar-search pull-left mb-3" method="get" action="{{ path('app_application_search') }}">
+                <div class="input-group rounded">
+                    <input type="search" class="form-control form-control-sm" placeholder="Recherche avec : code, nom, post-nom ou prénom" name="q" aria-label="Search" aria-describedby="search-addon"/>
+                    <span class="input-group-text border-0" id="search-addon">
+                        <i class="bi bi-search"></i>
+                     </span>
+                </div>
+            </form>
+        </div>
+
+        <div class="container" data-aos="fade">
+            <div class="card">
+                <div class="m-3">
+                    {{ conditions.content | raw }}
+                </div>
+                <h1 class="fw-bold text-center my-3">Fiche de préinscription</h1>
+                <div class="card-header bg-danger text-white"></div>
+                {{ form_start(form, {'attr': {class: 'php-email-form'}}) }}
+                <div class="mx-3">
+                    <h2 class="h4 fw-bold">1. Informations personnelles</h2>
+                    <div class="mb-3 row">
+                        <div class="col-md-4">
+                            {{ form_row(form.name) }}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form_row(form.fistName) }}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form_row(form.lastName) }}
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-md-3">
+                            {{ form_row(form.PlaceBirth) }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form_row(form.dateBirth) }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form_row(form.sexe) }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form_row(form.nationality) }}
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-md-3">
+                            {{ form_row(form.email) }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form_row(form.phone) }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form_row(form.residence) }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form_row(form.maritalStatus) }}
+                        </div>
+                    </div>
+                    <h6>Adresse domicile : </h6>
+                    <div class="mb-3 row">
+                        <div class="col-md-1">
+                            {{ form_row(form.addNumber) }}
+                        </div>
+                        <div class="col-md-11 row m-0 p-0">
+                            <div class="col-md-3">
+                                {{ form_row(form.addAvenue) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_row(form.addQuarter) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_row(form.addMunicipality) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_row(form.addCity) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                {% if route == 'app_home' %}
+                    <div class="mx-3">
+                    <h2 class="h4 fw-bold">2. Choix</h2>
+                    <div class="mb-3 row">
+                        <div class="col-md-6">
+                            {{ form_row(form.facOne) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.fistChoice) }}
+                        </div>
+                        <div class="mb-3 row d-none">
+                            <div class="col-md-4">
+                                {{ form_row(form.instOrigin) }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_row(form.facultyOrigin) }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_row(form.promRequest) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-md-6">
+                            {{ form_row(form.factTwo) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.secondChoice) }}
+                        </div>
+                    </div>
+                </div>
+                {% elseif route == 'app_application_news_special' %}
+                    <div class="mx-3">
+                        <h2 class="h4 fw-bold">2. Demande</h2>
+                        <div class="mb-3 row">
+                            <div class="col-md-6">
+                                {{ form_row(form.facOne, {'label':'Faculté'}) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(form.fistChoice, {'label':'Filière'}) }}
+                            </div>
+                            <div class="mb-3 row d-none">
+                                <div class="col-md-6">
+                                    {{ form_row(form.factTwo) }}
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form_row(form.secondChoice) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <div class="col-md-4">
+                                {{ form_row(form.instOrigin) }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_row(form.facultyOrigin) }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_row(form.promRequest) }}
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                {% endif %}
+                <hr>
+                <div class="mx-3">
+                    <h2 class="h4 fw-bold">2. Ecole secondaire fréquentée</h2>
+                    <div class="mb-3 row">
+                        <div class="col-md-4">
+                            {{ form_row(form.scName) }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form_row(form.scSection) }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form_row(form.scOption) }}
+                        </div>
+                        <div class="col-md-1">
+                            {{ form_row(form.scPercentage) }}
+                        </div>
+                        <div class="col-md-1">
+                            {{ form_row(form.scYear) }}
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-md-3">
+                            {{ form_row(form.scDiplomaType) }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form_row(form.scDiplomaNumber) }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form_row(form.scDiplomaPlace) }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form_row(form.scDiplomaDate) }}
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-md-4">
+                            {{ form_row(form.scCode) }}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form_row(form.scProvince) }}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form_row(form.scCountry) }}
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="mx-3">
+                    <h2 class="h4 fw-bold">3. Personne à prévenir en cas d’urgence</h2>
+                    <div class="mb-3 row">
+                        <div class="col-md-3">
+                            {{ form_row(form.urgName) }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form_row(form.urgRelation) }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form_row(form.urgPhone) }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form_row(form.urgMail) }}
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="mx-3">
+                    <h2 class="h4 fw-bold">4. Identité du père ou tuteur légal</h2>
+                    <div class="mb-3 row">
+                        <div class="col-md-3">
+                            {{ form_row(form.fatherName) }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form_row(form.fatherOccupation) }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form_row(form.fatherPhone) }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form_row(form.fatherMail) }}
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="mx-3">
+                    <h2 class="h4 fw-bold">5. Identité de la mère ou tutrice légale</h2>
+                    <div class="mb-3 row">
+                        <div class="col-md-3">
+                            {{ form_row(form.motherName) }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form_row(form.motherOccupation) }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form_row(form.motherPhone) }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form_row(form.motherMail) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="mx-3">
+                    <h2 class="h4 fw-bold">6. Autres informations</h2>
+                    <div class="mb-3 row">
+                        <div class="col-md-6">
+                            {{ form_row(form.provinceOrigin) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.territoryOrigin) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center m-3">
+                    <input value="SOUMETTRE" type="submit" class="btn btn-danger sm w-100">
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </main>
+{% endblock %}
+

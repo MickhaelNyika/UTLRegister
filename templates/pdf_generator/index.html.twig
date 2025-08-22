@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<style>
+			@font-face {
+				font-family: 'Arial_NA';
+				font-weight: normal;
+				font-style: normal;
+				font-variant: normal;
+				src: url({{ app.request.schemeAndHttpHost }}/assets/fonts/Arialn.ttf) format('truetype');
+			}
+			@font-face {
+				font-family: 'Arial_NA';
+				font-weight: bold;
+				font-style: normal;
+				font-variant: normal;
+				src: url({{ app.request.schemeAndHttpHost }}/assets/fonts/ARIALNB.ttf) format('truetype');
+			}
+			@font-face {
+				font-family: 'Arial_NA';
+				font-weight: normal;
+				font-style: italic;
+				font-variant: normal;
+				src: url({{ app.request.schemeAndHttpHost }}/assets/fonts/ARIALNI.ttf) format('truetype');
+			}
+
+			.s {
+				text-decoration: underline;
+			}
+			table {
+				width: 100%;
+				border-collapse: collapse;
+			}
+
+			footer {
+				position: fixed;
+				left: 0;
+				right: 0;
+				height: 150px;
+				bottom: 0;
+				margin-bottom: -120px;
+				font-weight: bold;
+				font-size: xx-small;
+			}
+
+			.title {
+				font-size: 22px;
+				font-weight: bold;
+				margin: 5px;
+			}
+
+			.text-center {
+				text-align: center;
+				margin: 0;
+			}
+
+			.content td {
+				border: solid 1px #000000;
+				padding-left: 5px;
+				padding-right: 5px;
+				font-size: small;
+				line-height: 15px;
+			}
+
+			.content th {
+				border: solid 1px #000000;
+				padding-bottom: 0;
+				padding-top: 0;
+				line-height: 10px;
+			}
+
+			#tab_info,
+			caption,
+			.ith,
+			.itd {
+				border: 1px solid;
+				border-collapse: collapse;
+			}
+			caption,
+			th,
+			td {
+				padding: 3px;
+				font-size: 1rem;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<table style="vertical-align: top; width: 100%">
+				<tr>
+					<td style="width: 10%">
+						<img src="{{ logo }}" style="width: 80px;">
+					</td>
+					<td style="width: 80%; line-height:20px;">
+						<p class="title">UNIVERSITE</p>
+						<p class="title">TECHNOLOGIQUE</p>
+						<p class="title">DU LUALABA</p>
+					</td>
+					<td style="width: 10%">
+						<img src="{{ qr.dataUri }}" style="width: 80px;">
+					</td>
+				</tr>
+			</table>
+			<div style="background-color: black; width: 100%; height: 4px"></div>
+			<h3 class="text-center s" style="margin: 10px 0 10px 0; font-size: x-large">FICHE DE PREINSCRIPTION - UNIVERSITE</h3>
+			<table id="tab_info">
+				<tr class="itr">
+					<td class="ith" colspan="2" style="text-align: center; font-size: 30px; font-weight: bold;">CODE :
+						{{ data.code }}</td>
+					<td class="itd" colspan="2" style="font-style: italic; text-align: center;">
+						{% if data.scPercentage < 60 %}
+							Vous êtes éligible au test d'admission.
+						{% else %}
+							Vous n'êtes pas éligible au test d'admission.
+						{% endif %}
+					</td>
+				</tr>
+				<tr class="itr">
+					<td class="ith">Nom</td>
+					<td class="itd">{{ data.name }}
+						{{ data.fistName }}
+						{{ data.lastName }}</td>
+					<td class="itd">Sexe</td>
+					<td class="itd">{{ data.sexe.name }}</td>
+				</tr>
+				<tr class="itr">
+					<td class="ith">Téléphone</td>
+					<td class="itd">{{ data.phone }}</td>
+					<td class="itd">E-mail</td>
+					<td class="itd">{{ data.email }}</td>
+				</tr>
+				<tr class="itr">
+					<td class="ith">Lieu de naissance</td>
+					<td class="itd">{{ data.placeBirth }}</td>
+					<td class="itd">Date de naissance</td>
+					<td class="itd">{{ data.dateBirth | date('d/m/Y') }}</td>
+				</tr>
+				<tr class="itr">
+					<td class="ith">Premier choix</td>
+					<td class="itd">{{ data.fistChoice.name }}</td>
+					<td class="itd">Deuxième choix</td>
+					<td class="itd">{{ data.secondChoice == null ? 'N/D' : data.secondChoice.name }}</td>
+				</tr>
+
+				<tr class="itr">
+					<td class="ith">Date</td>
+					<td class="itd">{{ data.createdAt | date('d/m/Y H:i') }}</td>
+					<td class="itd">Imprimé le</td>
+					<td class="itd">{{ 'now' | date('d/m/Y H:i', 'Europe/Paris') }}</td>
+				</tr>
+
+			</table>
+			<p style="font-size: 0.9em">
+				NB : Le candidat doit presenter la présente fiche à la TMB pour valider son inscription avec
+				<span style="font-weight: bold;">
+					{% if data.scPercentage < 60 %}200USD
+						{% else %}160USD
+					{% endif %}
+				</span><br>
+				Intitulé du compte :
+				<span style="font-weight: bold;">UNIVERSITE TECHNOLOGIQUE DE LUALABA</span><br>
+				N°Compte :
+				<span style="font-weight: bold;">00017-25500-02578790701-65 USD</span><br>
+				N°Compte :
+				<span style="font-weight: bold;">00017-25500-02578790800-59 CDF</span>
+			</p>
+			---------------------------------------------------------------------------------------------------------------------------------------------------------------
+			<br>
+			<table style="vertical-align: top; width: 100%">
+				<tr>
+					<td style="width: 10%">
+						<img src="{{ logo }}" style="width: 80px;">
+					</td>
+					<td style="width: 80%; line-height:20px;">
+						<p class="title">UNIVERSITE</p>
+						<p class="title">TECHNOLOGIQUE</p>
+						<p class="title">DU LUALABA</p>
+					</td>
+					<td style="width: 10%">
+						<img src="{{ qr.dataUri }}" style="width: 80px;">
+					</td>
+				</tr>
+			</table>
+			<div style="background-color: black; width: 100%; height: 4px"></div>
+			<h3 class="text-center s" style="margin: 10px 0 10px 0; font-size: x-large">FICHE DE PREINSCRIPTION - CANDIDAT</h3>
+			<table id="tab_info">
+				<tr class="itr">
+					<td class="ith" colspan="2" style="text-align: center; font-size: 30px; font-weight: bold;">CODE :
+						{{ data.code }}</td>
+					<td class="itd" colspan="2" style="font-style: italic; text-align: center;">
+						{% if data.scPercentage < 60 %}
+							Vous êtes éligible au test d'admission.
+						{% else %}
+							Vous n'êtes pas éligible au test d'admission.
+						{% endif %}
+					</td>
+				</tr>
+				<tr class="itr">
+					<td class="ith">Nom</td>
+					<td class="itd">{{ data.name }}
+						{{ data.fistName }}
+						{{ data.lastName }}</td>
+					<td class="itd">Sexe</td>
+					<td class="itd">{{ data.sexe.name }}</td>
+				</tr>
+				<tr class="itr">
+					<td class="ith">Téléphone</td>
+					<td class="itd">{{ data.phone }}</td>
+					<td class="itd">E-mail</td>
+					<td class="itd">{{ data.email }}</td>
+				</tr>
+				<tr class="itr">
+					<td class="ith">Lieu de naissance</td>
+					<td class="itd">{{ data.placeBirth }}</td>
+					<td class="itd">Date de naissance</td>
+					<td class="itd">{{ data.dateBirth | date('d/m/Y') }}</td>
+				</tr>
+				<tr class="itr">
+					<td class="ith">Premier choix</td>
+					<td class="itd">{{ data.fistChoice.name }}</td>
+					<td class="itd">Deuxième choix</td>
+					<td class="itd">{{ data.secondChoice == null ? 'N/D' : data.secondChoice.name }}</td>
+				</tr>
+
+				<tr class="itr">
+					<td class="ith">Date</td>
+					<td class="itd">{{ data.createdAt | date('d/m/Y H:i') }}</td>
+					<td class="itd">Imprimé le</td>
+					<td class="itd">{{ 'now' | date('d/m/Y H:i', 'Europe/Paris') }}</td>
+				</tr>
+
+			</table>
+			<p style="font-size: 0.9em">
+				NB : Le candidat doit presenter la présente fiche à la TMB pour valider son inscription avec
+				<span style="font-weight: bold;">
+					{% if data.special %}
+						200USD
+					{% elseif data.scPercentage < 60 %}200USD
+						{% else %}160USD
+					{% endif %}
+				</span><br>
+				Intitulé du compte :
+				<span style="font-weight: bold;">UNIVERSITE TECHNOLOGIQUE DE LUALABA</span><br>
+				N°Compte :
+				<span style="font-weight: bold;">00017-25500-02578790701-65 USD</span><br>
+				N°Compte :
+				<span style="font-weight: bold;">00017-25500-02578790800-59 CDF</span>
+			</p>
+		</main>
+		<footer>
+			<p style="margin: 0">https://www.utlualaba.com</p>
+			<p style="margin: 0">inscription@utlualaba.com</p>
+			<p style="margin: 0">RN39, Arrêt Musompo maison, Av. Malula, Quartier Musompo Ville de Kolwezi - République Démocratique du Congo</p>
+		</footer>
+	</body>
+</html>

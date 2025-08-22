@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ candidate.code }}{% endblock %}
+
+{% block class_body %}contact-page{% endblock %}
+{% block body %}
+    {% include 'common/page_title.html.twig' with {title:'Inscription'} %}
+    <main class="contact section">
+        <div class="container" data-aos="fade">
+            <div class="card">
+                <h1 class="fw-bold text-center my-3">Fiche de préinscription</h1>
+                <div class="card-header bg-danger text-white"></div>
+
+                <div class="alert alert-success m-3">
+                    <h4 class="alert-heading">Félicitation!</h4>
+                    <p>
+                        Votre préinscription a été enregistrée avec succès. Téléchargez la fiche contenant le code pour
+                        le paiement de frais de confirmation d'inscription. Merci !
+                    </p>
+                    <h3>Code: {{ candidate.code }}</h3>
+                    <hr>
+
+                    <div class="row mb-0">
+                        <div class="col">
+                            <a href="{{ path('app_pdf_generator', {code:candidate.code}) }}">
+                                <button type="button" class="btn btn-primary btn-md btn btn-primary w-100">
+                                    <i class="bi bi-download"></i>
+                                    Télécharger la fiche
+                                </button>
+                            </a>
+                        </div>
+                        {% if candidate.verified == false %}
+                            -- OU --
+                            <div class="col">
+                                <a href="{{ path('app_application_edit', {code:candidate.code}) }}">
+                                    <button type="button" class="btn btn-primary btn-md btn btn-primary w-100">
+                                        <i class="bi bi-pen"></i>
+                                        Modifier la fiche
+                                    </button>
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+{% endblock %}
+

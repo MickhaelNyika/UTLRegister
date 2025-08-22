@@ -1,0 +1,43 @@
+{% set route = app.request.attributes.get('_route') %}
+<header id="header" class="header sticky-top">
+
+	<div class="topbar d-flex align-items-center light-background">
+		<div class="container d-flex justify-content-center justify-content-md-between">
+			<div class="contact-info d-flex align-items-center">
+				<i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@utl.ac">contact@utlualaba.com</a></i>
+				<i class="bi bi-phone d-flex align-items-center ms-4"><span><a href="tel:+243818088871">+243 818 088 871</a></span></i>
+			</div>
+			<div class="social-links d-none d-md-flex align-items-center">
+				<a href="https://x.com/utlualaba" class="twitter"><i class="bi bi-twitter-x"></i></a>
+				<a href="https://www.facebook.com/p/Universit%C3%A9-Technologique-du-Lualaba-UTL-61557904538922/?locale=fr_FR" class="facebook"><i class="bi bi-facebook"></i></a>
+				<a href="https://www.instagram.com/utlualaba/" class="instagram"><i class="bi bi-instagram"></i></a>
+				<a href="https://www.linkedin.com/company/utlualaba/?viewAsMember=true" class="linkedin"><i class="bi bi-linkedin"></i></a>
+			</div>
+		</div>
+	</div><!-- End Top Bar -->
+
+	<div class="branding d-flex align-items-cente">
+
+		<div class="container position-relative d-flex align-items-center justify-content-between">
+			<a href="{{ path('app_home') }}" class="logo d-flex align-items-center">
+				<img src="/assets/img/logo.png" alt="Université Technologique du Lualaba" class="w-100">
+			</a>
+
+			<nav id="navmenu" class="navmenu">
+				<ul>
+{#					<li><a href="{{ path('app_home') }}" class="{{ route == 'app_home' ? 'active' : '' }}">Accueil<br></a></li>#}
+{#					<li><a href="#" class="{{ route == 'app_news' ? 'active' : '' }}">Actualité</a></li>#}
+{#					<li><a href="#" class="{{ route == 'app_news' ? 'active' : '' }}">Université</a></li>#}
+{#					<li><a href="#" class="{{ route == 'app_news' ? 'active' : '' }}">Facultés</a></li>#}
+{#					<li><a href="{{ path('app_admission') }}" class="{{ route == 'app_admission' ? 'active' : '' }}">Admission</a></li>#}
+{#					<li><a href="{{ path('app_pre_registration_new') }}" class="{{ route == 'app_pre_registration_new' ? 'active' : '' }}">Inscription</a></li>#}
+{#					<li><a href="#" class="{{ route == 'con' ? 'active' : '' }}">Contact</a></li>#}
+				</ul>
+				<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+			</nav>
+
+		</div>
+
+	</div>
+
+</header>

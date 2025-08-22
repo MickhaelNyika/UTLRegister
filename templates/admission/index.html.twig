@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admission{% endblock %}
+{% block ogtitle %}Admission{% endblock %}
+
+{% block class_body %}contact-page{% endblock %}
+{% block body %}
+    {% include 'common/page_title.html.twig' with {title:data.title} %}
+    <main class="contact section">
+        <div class="container" data-aos="fade">
+            <img class="float-end w-25 img-fluid mt-3" src="{{ vich_uploader_asset(data, 'imgFile') }}" alt="Université Technologique du Lualaba">
+            {{ data.content | raw }}
+        </div>
+    </main>
+{% endblock %}
+

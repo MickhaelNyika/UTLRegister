@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% set img = vich_uploader_asset(blog, 'imgFile') | imagine_filter('mgm') %}
+
+{% block title %}{{ blog.title }}{% endblock %}
+{% block og_title %}{{ blog.title }}{% endblock %}
+{% block ogimg %}"{{ img }}"{% endblock %}
+{% block desc %}{{ blog.description | striptags | slice(0, 255) }}{% endblock %}
+{% block ogdesc %}{{ blog.description | striptags | slice(0, 255) }}{% endblock %}
+
+{% block body %}
+	{{ include("common/thirdNav.html.twig", {page:blog.title, img:null}) }}
+
+	<section id="blog" class="blog">
+		<div class="container" data-aos="fade-up">
+			<div class="row g-5">
+				<div class="col-lg-8">
+					<article class="blog-details shadow-none">
+						<div class="post-img" style="background-image: url({{vich_uploader_asset(blog, 'imgFile') | imagine_filter('card')}});">
+						</div>
+						<h2 class="title">{{ blog.title }}</h2>
+						<div class="meta-top">
+							<ul>
+								<li class="d-flex align-items-center">
+									<i class="bi bi-clock"></i>
+									<a href="">
+										<time datetime="2020-01-01">{{blog.createdAt|date('d-m-y')}}</time>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<!-- End meta top -->
+						<div class="content" style="text-align: justify!important;">
+							{{ blog.description|raw }}
+						</div>
+						<!-- End post content -->
+
+						<div class="meta-bottom">
+							<i class="bi bi-folder"></i>
+							<ul class="cats">
+								<li>
+									<a href="{{ path('app_news_category', {slug:blog.catagory.slug}) }}">{{blog.catagory.name}}</a>
+								</li>
+							</ul>
+						</div>
+						<!-- End meta bottom -->
+
+					</article>
+					<!-- End blog post -->
+				</div>
+
+				<div class="col-lg-4 shadow-sm">
+					<div class="sidebar shadow-none">
+						{% include "common/miniside.html.twig" %}
+						<div class="sidebar-item recent-posts">
+							<h3 class="sidebar-title">Article similaires</h3>
+							<div class="mt-3">
+                            {% for item in blog.catagory %}
+                                    <div class="post-item mt-3">
+									<img src="{{vich_uploader_asset(item, 'imgFile') | imagine_filter('card')}}" alt="" class="flex-shrink-0">
+									<div>
+										<h4>
+											<a href="blog-post.html">{{item.title}}</a>
+										</h4>
+										<time datetime="2020-01-01">{{item.createdAt|date('y')}}</time>
+									</div>
+								</div>
+                                {% else %}
+                                    <p class="text-danger"><bold>Aucun article similaires</bold></p>
+                            {% endfor %}
+								<!-- End recent post item-->
+							</div>
+						</div>
+						<!-- End sidebar recent posts-->
+					</div>
+					<!-- End blog Sidebar -->
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End blog Details Section -->
+{% endblock %}

@@ -1,0 +1,348 @@
+<html lang="fr">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style>
+        .s {
+            text-decoration: underline;
+        }
+        body {
+            margin: -10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        footer {
+            position: fixed;
+            left: 0;
+            right: 0;
+            height: 150px;
+            bottom: 0;
+            margin-bottom: -120px;
+            font-weight: bold;
+            font-size: xx-small;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 1px;
+        }
+
+        .title_form{
+            margin: 0cm 0cm 0cm 15.9pt;
+            text-indent:-15.9pt;
+            line-height:normal;
+            font-size:16px;
+            font-weight: bold;
+        }
+
+        .text-center {
+            text-align: center;
+            margin: 0;
+        }
+
+        .content td {
+            border: solid 1px #000000;
+            padding-left: 5px;
+            padding-right: 5px;
+            font-size: small;
+            line-height: 15px;
+        }
+
+        .content th {
+            border: solid 1px #000000;
+            padding-bottom: 0;
+            padding-top: 0;
+            line-height: 10px;
+        }
+
+        #tab_info,
+        caption,
+        .ith,
+        .itd {
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+        caption,
+        th,
+        td {
+            padding: 3px;
+            font-size: 1rem;
+            height: 2px;
+        }
+        .background-div {
+            padding: 5px;
+            background-image: url({{ logo }});
+            background-size: contain ;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .title_sub{
+            margin: 0cm 0cm 0cm 0cm;
+            height: 10px;
+            line-height: 10px;
+            font-size:xx-small;
+            font-weight: bold;
+        }
+    </style>
+    <title></title>
+</head>
+
+<body>
+    <main>
+        <div style="border: 2px black solid;padding: 1px;">
+            <table style="vertical-align: top; width: 100%" id="tab_info">
+                <tr>
+                    <td class="itd" style="width: 20%; text-align: center;" rowspan="2">
+                        <img src="{{ logo }}" style="position: absolute; width: 140px;">
+                    </td>
+                    <td class="itd" style="width: 60%; text-align: center;padding-top: 10px;padding-bottom: 10px">
+                        <p class="title">REPUBLIQUE DEMOCRATIQUE DU CONGO</p>
+                        <p class="title" style="font-size: 25px">MINISTERE DE L'ENSEIGNEMENT SUPERIEUR ET UNIVERSITAIRE</p>
+                        <p class="title">UNIVERSITE TECHNOLOGIQUE DU LUALABA</p>
+                        <p class="title">Secrétariat General Académique</p>
+                    </td>
+                    <td class="itd" rowspan="2" style="width: 20%; text-align: center">
+                        <p>PHOTO</p>
+                    </td>
+                </tr>
+                <tr style='height:19.85pt'>>
+                    <td class="itd" style="text-align: center;">
+                        <p class="title_form" style="font-size: x-large!important;">FICHE DE SCOLARITE N° {{ data.code |slice(5,4) }}</p>
+                    </td>
+                </tr>
+            </table>
+            <table style="vertical-align: top; width: 100%" id="tab_info">
+                <tr style='height:19.85pt'>
+                    <td class="itd"  colspan=10>
+                        <p class="title_form">I. IDENTITES</p>
+                    </td>
+                </tr>
+                <tr style='line-height: 10px'>
+                    <td class="itd"  colspan=10 style='width:100.0%;border-top:none;border-left: double windowtext 4.5pt;border-bottom:solid windowtext 1.0pt;border-right: double windowtext 4.5pt;padding:0cm 5.4pt 0cm 5.4pt;height:19.85pt'>
+                        <p>Nom, post-nom et prénom&nbsp;: <span style="font-weight: bold">{{ data.name ~' '~ data.fistName ~' '~ data.lastName }}</span> &nbsp;&nbsp;&nbsp;Matricule&nbsp;: <span style="font-weight: bold">{{ data.code }}</span></p>
+                        <p>Lieu et date de naissance&nbsp;: <span style="font-weight: bold">{{ data.placeBirth }}, le {{ data.dateBirth | date('d/m/Y') }}</span></p>
+                        <p>Sexe&nbsp;:<span style="font-weight: bold"> {{ data.sexe.name }}</span>&nbsp;&nbsp;&nbsp;Etat civil&nbsp;: <span style="font-weight: bold">{{ data.maritalStatus.name }}</span> &nbsp;&nbsp;&nbsp;Nationalité&nbsp;: <span style="font-weight: bold">{{ data.nationality }}</span></p>
+                        <p>Nom du père&nbsp;: <span style="font-weight: bold"> {{ data.fatherName }}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nom de la mère&nbsp;: <span style="font-weight: bold"> {{ data.motherName }}</span></p>
+                        <p>Province d'origine des parents : <span style="font-weight: bold"> {{ data.provinceOrigin }}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Térritoire&nbsp;: <span style="font-weight: bold"> {{ data.territoryOrigin }}</span></p>
+                        <p>Adresse&nbsp;: <span style="font-weight: bold">{{ data.addNumber ~', Av. '~ data.addAvenue ~' Q/ '~ data.addQuarter ~' C/ '~ data.addMunicipality ~' - '~ data.addCity }}</span></p>
+                        <p>Numéro de téléphone&nbsp;: <span style="font-weight: bold"> {{ data.phone }}</span></p>
+                        <p>Personne à contacter en cas d'urgence&nbsp;: <span style="font-weight: bold"> {{ data.urgName }}</span> </p>
+                        <p>Numéro Téléphone&nbsp;: <span style="font-weight: bold"> {{ data.urgPhone }}</span></p>
+                    </td>
+                </tr>
+                <tr class="itr">
+                    <td class="itd"  colspan=10 >
+                        <p class="title_form">II. ETUDES SECONDAIRES</p>
+                    </td>
+                </tr>
+                <tr style='line-height: 10px'>
+                    <td class="itd"  colspan=10 style='width:100.0%;border-top:none;border-left:double windowtext 4.5pt;border-bottom:solid windowtext 1.0pt;border-right:double windowtext 4.5pt;padding:0cm 5.4pt 0cm 5.4pt;height:19.85pt'>
+                        <p>Diplôme d'accès à l'enseignement supérieur et universitaire&nbsp;:</p>
+                        <p><span style="font-weight: bold"> {{ data.scDiplomaType }}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N° : <span style="font-weight: bold"> {{ data.scDiplomaNumber }}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% <span style="font-weight: bold"> {{ data.scPercentage }}</span></p>
+                        <p>Section&nbsp;: <span style="font-weight: bold"> {{ data.scSection }}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;: <span style="font-weight: bold"> {{ data.scOption | default('N/D') }}</span></p>
+                        <p>Délivré à&nbsp;: <span style="font-weight: bold"> {{ data.scDiplomaPlace }}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;en date du &nbsp;<span style="font-weight: bold"> {{ data.scDiplomaDate | date('Y') }}</span></p>
+                        <p>Ecole&nbsp;: <span style="font-weight: bold"> {{ data.scName }}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Code&nbsp;: <span style="font-weight: bold"> {{ data.scCode }}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Province&nbsp;: <span style="font-weight: bold"> {{ data.scProvince }}</span></p>
+                    </td>
+                </tr>
+                <tr style="height:10pt">
+                    <td class="itd"  colspan=10>
+                        <p class="title_form">III. CURSUS ACADEMIQUE A L'ESU</p>
+                    </td>
+                </tr>
+                <tr style="text-align: center" class="title_sub">
+                    <td class="itd" rowspan="3">
+                        <p class="title_sub" style="font-size: xx-small; font-weight: bold">ANNEE ACADEMIQUE</p>
+                    </td>
+                    <td class="itd" rowspan="3">
+                        <p class="title_sub" style="font-size: xx-small; font-weight: bold">ETABLISSEMENT</p>
+                    </td>
+                    <td class="itd"  rowspan=3>
+                        <p class="title_sub" style="font-size: xx-small; font-weight: bold">FACULTE</p>
+                    </td>
+                    <td class="itd"  rowspan=3>
+                        <p class="title_sub" style="font-size: xx-small; font-weight: bold">FILIERE</p>
+                    </td>
+                    <td class="itd"  rowspan=3>
+                        <p class="title_sub" style="font-size: xx-small; font-weight: bold">PROMOTION</p>
+                    </td>
+                    <td class="itd"  colspan=4>
+                        <p class="title_sub" style="font-size: xx-small; font-weight: bold;">RESULTATS</p>
+                    </td>
+                    <td class="itd"  rowspan=3>
+                        <p class="title_sub" style="font-size: xx-small; font-weight: bold">SIGNATURE</p>
+                    </td>
+                </tr>
+                <tr style='text-align: center;'>
+                    <td class="itd"  colspan=2>
+                        <p class="title_sub" style="font-size: xx-small; font-weight: bold">NORMAL</p>
+                    </td>
+                    <td class="itd"  colspan=2>
+                        <p class="title_sub" style="font-size: xx-small; font-weight: bold">RATTRAPAGE</p>
+                    </td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td class="itd" >
+                        <p class="title_sub" style="font-size: xx-small; font-weight: bold">MENTION</p>
+                    </td>
+                    <td class="itd" >
+                        <p class="title_sub" style="font-size: xx-small; font-weight: bold">MOY/20</p>
+                    </td>
+                    <td class="itd" >
+                        <p class="title_sub" style="font-size: xx-small; font-weight: bold">MENTION</p>
+                    </td>
+                    <td class="itd" >
+                        <p class="title_sub" style="font-size: xx-small; font-weight: bold">MOY/20</p>
+                    </td>
+                </tr>
+                <tr class="title_sub">
+                    <td class="itd" style="height: 17px" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                </tr>
+                <tr class="title_sub">
+                    <td class="itd" style="height: 17px" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                </tr>
+                <tr class="title_sub">
+                    <td class="itd" style="height: 17px" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                </tr>
+                <tr class="title_sub">
+                    <td class="itd" style="height: 17px" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                </tr>
+                <tr class="title_sub">
+                    <td class="itd" style="height: 17px" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                </tr>
+                <tr class="title_sub">
+                    <td class="itd" style="height: 17px" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                    <td class="itd" >
+                    </td>
+                </tr>
+
+                <tr class="itr">
+                    <td colspan="10">
+                        <p style="text-align:right; margin-right: 50px">Fait à Kolwezi, le {{ 'now' | date('d/m/Y') }}</p>
+                        <p style="text-align:right; margin-right: 25px; margin-bottom: 80px">Le Sécretaire Géneral Académique</p>
+                        <small style="font-size: 6px;">UNIVERSITE TECHNOLOGIQUE DU LUALABA © {{ 'now' | date('Y') }}</small>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </main>
+</body>
+
+</html>

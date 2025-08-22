@@ -1,0 +1,17 @@
+<div class="d-flex align-items-center justify-content-center" data-aos="zoom-out" style="margin-top: 50px!important;">
+	{% if img != null %}
+		<div class="carousel-caption my-auto" style="text-align: left!important; bottom: auto ; right: 0; left: 0;">
+			<div class="container">
+				<h1 class="fw-bold">{{ page }}</h1>
+			</div>
+		</div>
+		<img class="w-100" src="{{ asset(img | imagine_filter('img_head')) }}" alt="Commus SAS">
+	{% else %}
+		<div class="carousel-caption my-auto" style="text-align: left!important; bottom: auto ; right: 0; left: 0;">
+			<div class="container">
+				<h1 class="fw-bold">{{ page }}</h1>
+			</div>
+		</div>
+		<img class="w-100" src="{{asset('uploads/images/pages/default.jpg') | imagine_filter('img_head')}}" alt="Commus SAS">
+	{% endif %}
+</div>

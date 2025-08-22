@@ -1,0 +1,9 @@
+{#% extends 'base.html.twig' %#}
+
+{% block body %}
+    <div class="container">
+        <a href="#" class="text-center"><img src="{{ qr.qrcode(link, data.code) }}" class="img-thumbnail" style="width:25%" alt="qr-code"></a>
+    </div>
+{% endblock %}
+
+

@@ -1,0 +1,44 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block title %}Université Technologique du Lualaba{% endblock %}
+{% block page_content %}
+<div class="row">
+    <div class="col">
+        <div class="card mb-3">
+            <div class="card-body ">
+                <h4 class="fw-bold">Applications par filière : {{ pre }}</h4>
+                {{ render_chart(chartTwo) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card mb-3">
+            <div class="card-body ">
+                <h4 class="fw-bold">Application par filière : {{ confirm }}</h4>
+                {{ render_chart(chartConfirmTwo) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card mb-3">
+            <div class="card-body ">
+                <h4 class="fw-bold">Application par faculté : {{ pre }}</h4>
+                {{ render_chart(chartOne) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card mb-3">
+            <div class="card-body ">
+                <h4 class="fw-bold">Confirmation par faculté : {{ confirm }}</h4>
+                {{ render_chart(chartConfirmOne) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

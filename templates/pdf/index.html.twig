@@ -1,0 +1,83 @@
+<style type="text/css">
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: solid 1px #000000;
+        padding: 5px;
+    }
+
+    .s{
+        text-decoration : underline;
+    }
+
+    .header td {
+        width: 50%;
+        vertical-align: top
+    }
+
+    .text-left {
+        text-align: left
+    }
+
+    .title{
+        font-size: 20px;
+        font-weight : bold;
+    }
+
+    .text-right {
+        text-align: right
+    }
+
+    .text-center {
+        text-align: center;
+        margin: 0px;
+    }
+
+    .separator {
+        height: 150px;
+        width: 100%
+    }
+
+    .content td {
+        border: solid 1px #000000;
+        padding: 5px;
+    }
+
+    .content th {
+        border: solid 1px #000000;
+        padding: 5px;
+        /*background-color: #0000;
+        color: #ffffff;*/
+    }
+</style>
+<page backtop="0mm" backbottom="0mm">
+    {#% set profil = "" %}
+    {% if data.user.img != null %}
+        {% set profil = 'media/cache/profil/imgs/profils/' ~ data.user.img %}
+    {% else %}
+        {% if data.user.sexe.name == 'FEMININ' %}
+            {% set profil = 'media/cache/profil/woman.jpg' %}
+        {% elseif data.user.sexe.name == 'MASCULIN' %}
+            {% set profil = 'media/cache/profil/man.png' %}
+        {% else %}
+            {% set profil = '7logo+.png' %}
+        {% endif %}
+    {% endif %#}
+    
+    <table style="vertical-align: top;">
+        <tr>
+            <td style="width: 10%">
+                <img src="assets/unilu.jpg" style="width: 90px; position:absolute;top:85px; left:0%;">}
+            </td>
+            <td style="width: 80%">
+                <p class="text-center title">REPUBLIQUE DEMOCRATIQUE DU CONGO</p>
+                <p class="text-center title">UNIVERSITE DE LUBUMBASHI</p>
+                <p class="text-center s">ECOLE DE CRIMINOLOGIE</p>
+            </td>
+
+            <td style="width: 10%">
+                <img src="assets/ecocrim.jpg" style="width: 90px;">
+            </td>
+        </tr>
+    </table>
+</page>
