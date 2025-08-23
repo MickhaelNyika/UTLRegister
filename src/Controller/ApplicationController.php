@@ -35,7 +35,9 @@ class ApplicationController extends AbstractController
             $mount = $now->format('m');
             $num = $year . $mount . str_pad($lastId + 1, 5, 0, STR_PAD_LEFT);
             $candidate
-                ->setIsSpecial(true)
+                ->setFacOne($candidate->getFistChoice()->getFaculty())
+                ->setFactTwo($candidate->getSecondChoice()->getFaculty())
+                ->setIsSpecial(false)
                 ->setName(strtoupper($candidate->getName()))
                 ->setFistName(strtoupper($candidate->getFistName()))
                 ->setLastName(strtoupper($candidate->getLastName()))
@@ -73,6 +75,7 @@ class ApplicationController extends AbstractController
             $num = $year . $mount . str_pad($lastId + 1, 5, 0, STR_PAD_LEFT);
             $candidate
                 ->setIsSpecial(true)
+                ->setFacOne($candidate->getFistChoice()->getFaculty())
                 ->setName(strtoupper($candidate->getName()))
                 ->setFistName(strtoupper($candidate->getFistName()))
                 ->setLastName(strtoupper($candidate->getLastName()))
