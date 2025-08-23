@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\DbCandidatesRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: DbCandidatesRepository::class)]
@@ -20,6 +21,7 @@ class DbCandidates
         min: 2,
         max: 50,
     )]
+    #[Groups(['r:can:coll'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
@@ -185,6 +187,7 @@ class DbCandidates
     private ?DbSexes $sexe = null;
 
     #[ORM\Column(type: Types::INTEGER, unique: true, nullable: true)]
+    #[Groups(['r:can:coll'])]
     private ?int $code = null;
 
     #[ORM\Column]
@@ -204,9 +207,11 @@ class DbCandidates
     private ?int $scYear = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['r:can:coll'])]
     private ?string $fistName = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['r:can:coll'])]
     private ?string $lastName = null;
 
     #[ORM\Column(length: 255)]

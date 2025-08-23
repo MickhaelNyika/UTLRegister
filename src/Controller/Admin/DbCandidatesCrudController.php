@@ -129,10 +129,10 @@ class DbCandidatesCrudController extends AbstractCrudController
 
             DateField::new('slipAt', 'Date paiement')->hideOnIndex()->setColumns(6),
             TextField::new('slipRef', 'Réf Bordereau')->hideOnIndex()->setColumns(6),
-            BooleanField::new('isSpecial', 'Spécial'),
-            TextField::new('instOrigin', 'Provenance')->setColumns(3),
-            TextField::new('facultyOrigin', 'Faculté/Filière de provenance')->setColumns(3),
-            TextField::new('promRequest', 'Promotion demandée')->setColumns(3),
+            BooleanField::new('isSpecial', 'Spécial')->hideOnIndex(),
+            TextField::new('instOrigin', 'Provenance')->hideOnIndex()->setColumns(3),
+            TextField::new('facultyOrigin', 'Faculté/Filière de provenance')->hideOnIndex()->setColumns(3),
+            TextField::new('promRequest', 'Promotion demandée')->hideOnIndex()->setColumns(3),
         ];
     }
 

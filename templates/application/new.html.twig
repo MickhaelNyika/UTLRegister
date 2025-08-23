@@ -1,12 +1,19 @@
 {% extends 'base.html.twig' %}
 {% set route = app.request.attributes.get('_route') %}
 
-{% block title %}{{ route == 'app_home' ? 'Inscription' : 'Inscription spéciale' }}{% endblock %}
+{% block title %}
+    {% if route == 'app_home' or 'app_application_edit' %}
+        Inscription'
+    {% else %}
+    Inscription spéciale
+    {% endif %}
+
+{% endblock %}
 {% block ogtitle %}{{ route == 'app_home' ? 'Inscription' : 'Inscription spéciale' }}{% endblock %}
 
 {% block class_body %}contact-page{% endblock %}
 {% block body %}
-    {% if route == 'app_home' %}
+    {% if route == 'app_home' or 'app_application_edit' %}
         {% include 'common/page_title.html.twig' with {title:'Inscription'} %}
     {% else %}
         {% include 'common/page_title.html.twig' with {title:'Inscription spéciale'} %}
@@ -27,11 +34,18 @@
 
         <div class="container" data-aos="fade">
             <div class="card">
-                <div class="m-3">
-                    {{ conditions.content | raw }}
-                </div>
 
-                {% if route == 'app_home' %}
+                {% if route == 'app_home' or 'app_application_edit' %}
+                    <div class="m-3">
+                        {{ conditions.content | default('') | raw }}
+                    </div>
+                {% else %}
+                    <div class="m-3">
+                        {{ conditions.content | default('') | raw }}
+                    </div>
+                {% endif %}
+
+                {% if route == 'app_home' or 'app_application_edit' %}
                     <h1 class="fw-bold text-center my-3">Fiche de préinscription</h1>
                 {% else %}
                     <h1 class="fw-bold text-center my-3">Fiche de demande d'inscription spéciale</h1>
@@ -102,7 +116,7 @@
                     </div>
                 </div>
                 <hr>
-                {% if route == 'app_home' %}
+                {% if route == 'app_home' or 'app_application_edit' %}
                     <div class="mx-3">
                     <h2 class="h4 fw-bold">2. Choix</h2>
                     <div class="mb-3 row">

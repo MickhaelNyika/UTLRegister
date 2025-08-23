@@ -178,4 +178,11 @@ class ApplicationController extends AbstractController
 
         return new JsonResponse(['data' => $data]);
     }
+
+    #[Route('/data/ab', name: 'data_ab_index', methods: ['GET'])]
+    public function ab(DbCandidatesRepository $repo): JsonResponse
+    {
+        $data = $repo->findAll();
+        return $this->json($data, 200, [], ['groups' => ['r:can:coll']]);
+    }
 }
