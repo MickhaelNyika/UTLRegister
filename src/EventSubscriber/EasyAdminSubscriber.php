@@ -91,7 +91,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         $entity = $event->getEntityInstance();
         if($entity instanceof DbCandidates){
             $this->logAction($event, 'delete');
-            $sql = 'SET @num := 0; UPDATE st_pre_registrations SET id = @num := (@num + 1); ALTER TABLE st_pre_registrations AUTO_INCREMENT = 1;';
+            $sql = 'SET @num := 0; UPDATE db_candidates SET id = @num := (@num + 1); ALTER TABLE db_candidates AUTO_INCREMENT = 1;';
             $con = $this->manager->getConnection();
             $con->executeQuery($sql);
         }
