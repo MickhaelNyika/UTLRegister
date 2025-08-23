@@ -109,7 +109,9 @@
 					<td class="ith" colspan="2" style="text-align: center; font-size: 30px; font-weight: bold;">CODE :
 						{{ data.code }}</td>
 					<td class="itd" colspan="2" style="font-style: italic; text-align: center;">
-						{% if data.scPercentage < 60 %}
+						{% if data.special %}
+							Vous n'êtes pas éligible au test d'admission.
+						{% elseif data.scPercentage < 60 %}
 							Vous êtes éligible au test d'admission.
 						{% else %}
 							Vous n'êtes pas éligible au test d'admission.
@@ -189,7 +191,9 @@
 					<td class="ith" colspan="2" style="text-align: center; font-size: 30px; font-weight: bold;">CODE :
 						{{ data.code }}</td>
 					<td class="itd" colspan="2" style="font-style: italic; text-align: center;">
-						{% if data.scPercentage < 60 %}
+						{% if data.special %}
+							Vous n'êtes pas éligible au test d'admission.
+						{% elseif data.scPercentage < 60 %}
 							Vous êtes éligible au test d'admission.
 						{% else %}
 							Vous n'êtes pas éligible au test d'admission.
