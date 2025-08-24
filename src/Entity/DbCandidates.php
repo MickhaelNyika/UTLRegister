@@ -62,6 +62,10 @@ class DbCandidates
     private ?DbSectors $fistChoice = null;
 
     #[ORM\ManyToOne(inversedBy: 'studentsSecond')]
+    #[Assert\NotIdenticalTo(
+        propertyPath: "fistChoice",
+        message: "Le deuxième choix doit être différent du premier..."
+    )]
     private ?DbSectors $secondChoice = null;
 
     #[ORM\Column(length: 255)]
