@@ -146,8 +146,8 @@ class ApplicationController extends AbstractController
             return $this->redirectToRoute('app_application_show', ['code' => $candidates->getCode()], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('application/new.html.twig', [
-            'st_pre_registration' => $candidates,
+        return $this->render('application/edit.html.twig', [
+            'candidate' => $candidates,
             'form' => $form,
         ]);
     }

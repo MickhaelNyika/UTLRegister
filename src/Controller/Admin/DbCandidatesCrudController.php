@@ -11,6 +11,7 @@ use App\Entity\DbResidences;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -169,5 +170,13 @@ class DbCandidatesCrudController extends AbstractCrudController
         //$url = $this->gene
         $url = $this->generateUrl('app_pdf_down_fiche_solarize', ['code' => $entity->getCode()]);
         return $this->redirect($url);
+    }
+
+    public function configureFilters(Filters $filters):Filters
+    {
+        return $filters
+            ->add('isVerified', 'Confirmation')
+            ->add('isSpecial', 'Inscription spéciale')
+          ;
     }
 }

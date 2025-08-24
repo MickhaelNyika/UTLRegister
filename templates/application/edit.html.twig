@@ -1,22 +1,26 @@
 {% extends 'base.html.twig' %}
-{% set route = app.request.attributes.get('_route') %}
 
 {% block title %}
-    {% if route == 'app_home' %}
-        Inscription
+    {% if candidate.special %}
+        Inscription spéciale
     {% else %}
-    Inscription spéciale
+        Inscription
     {% endif %}
-
 {% endblock %}
-{% block ogtitle %}{{ route == 'app_home' ? 'Inscription' : 'Inscription spéciale' }}{% endblock %}
+{% block ogtitle %}
+    {% if candidate.special %}
+        Inscription spéciale
+    {% else %}
+        Inscription
+    {% endif %}
+{% endblock %}
 
 {% block class_body %}contact-page{% endblock %}
 {% block body %}
-    {% if route == 'app_home' %}
-        {% include 'common/page_title.html.twig' with {title:'Inscription'} %}
-    {% else %}
+    {% if candidate.special %}
         {% include 'common/page_title.html.twig' with {title:'Inscription spéciale'} %}
+    {% else %}
+        {% include 'common/page_title.html.twig' with {title:'Inscription'} %}
     {% endif %}
 
     <main class="contact section">
@@ -35,20 +39,10 @@
         <div class="container" data-aos="fade">
             <div class="card">
 
-                {% if route == 'app_home' %}
-                    <div class="m-3">
-                        {{ conditions.content | default('') | raw }}
-                    </div>
-                {% else %}
-                    <div class="m-3">
-                        {{ conditions.content | default('') | raw }}
-                    </div>
-                {% endif %}
-
-                {% if route == 'app_home' %}
-                    <h1 class="fw-bold text-center my-3">Fiche de préinscription</h1>
-                {% else %}
+                {% if candidate.special %}
                     <h1 class="fw-bold text-center my-3">Fiche de demande d'inscription spéciale</h1>
+                {% else %}
+                    <h1 class="fw-bold text-center my-3">Fiche de préinscription</h1>
                 {% endif %}
 
                 <div class="card-header bg-danger text-white"></div>
@@ -116,7 +110,7 @@
                     </div>
                 </div>
                 <hr>
-                {% if route == 'app_home' %}
+                {% if candidate.special == false %}
                     <div class="mx-3">
                     <h2 class="h4 fw-bold">2. Choix</h2>
                     <div class="mb-3 row">
@@ -147,7 +141,7 @@
                         </div>
                     </div>
                 </div>
-                {% elseif route == 'app_application_news_special' %}
+                {% elseif candidate.special %}
                     <div class="mx-3">
                         <h2 class="h4 fw-bold">2. Demande</h2>
                         <div class="mb-3 row">
