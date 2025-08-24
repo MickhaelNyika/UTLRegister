@@ -360,7 +360,7 @@ class CandidateFormType extends AbstractType
                 'class' => DbFaculties::class,
                 'choice_label' => 'name',
                 'placeholder' => 'Choisissez une faculté',
-                'mapped' => false,
+                'mapped' => true,
             ])
             ->add('fistChoice', EntityType::class, [
                 'label' => 'Filière 1 <span class="text-danger">*</span>',
@@ -382,7 +382,7 @@ class CandidateFormType extends AbstractType
                 'class' => DbFaculties::class,
                 'choice_label' => 'name',
                 'placeholder' => 'Choisissez une faculté',
-                'mapped' => false,
+                'mapped' => true,
             ])
             ->add('secondChoice', EntityType::class, [
                 'label' => 'Filière 2 <span class="text-danger">*</span>',
