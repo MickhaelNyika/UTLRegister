@@ -121,6 +121,7 @@ class DbCandidates
         min: 2,
         max: 3,
     )]
+    #[Groups(['r:can:coll'])]
     private ?string $scPercentage = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -237,9 +238,11 @@ class DbCandidates
     private ?string $addCity = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['r:can:coll'])]
     private ?\DateTimeImmutable $slipAt = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['r:can:coll'])]
     private ?string $slipRef = null;
 
     #[ORM\ManyToOne(inversedBy: 'regOne')]
@@ -289,6 +292,7 @@ class DbCandidates
     private ?string $promRequest = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['r:can:coll'])]
     private ?bool $isSpecial = null;
 
     public function __toString()
@@ -981,5 +985,35 @@ class DbCandidates
         $this->isSpecial = $isSpecial;
 
         return $this;
+    }
+
+    #[Groups(['r:can:coll'])]
+    public function getSexeName():string
+    {
+        return $this->sexe ? $this->sexe->getName() : '';
+    }
+
+    #[Groups(['r:can:coll'])]
+    public function getFacFirstName():string
+    {
+        return $this->facOne ? $this->facOne->getName() : '';
+    }
+
+    #[Groups(['r:can:coll'])]
+    public function getFacSecondName():string
+    {
+        return $this->factTwo ? $this->factTwo->getName() : '';
+    }
+
+    #[Groups(['r:can:coll'])]
+    public function getFistChoiceName():string
+    {
+        return $this->fistChoice ? $this->fistChoice->getName() : '';
+    }
+
+    #[Groups(['r:can:coll'])]
+    public function getSecondChoiceName():string
+    {
+        return $this->secondChoice ? $this->secondChoice->getName() : '';
     }
 }

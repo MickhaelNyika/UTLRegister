@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/')]
 class ApplicationController extends AbstractController
@@ -183,9 +184,29 @@ class ApplicationController extends AbstractController
     }
 
     #[Route('/data/ab', name: 'data_ab_index', methods: ['GET'])]
+    #[IsGranted("ROLE_PRIME")]
     public function ab(DbCandidatesRepository $repo): JsonResponse
     {
         $data = $repo->findAll();
-        return $this->json($data, 200, [], ['groups' => ['r:can:coll']]);
+        $json = [];
+
+        foreach ($data as $item) {
+            $json[] = [
+                'MATRICULE' => $item->getCode(),
+                'NOM' => $item->getName(),
+                'POST-NOM' => $item->getFistName(),
+                'PRENOM' => $item->getLastName(),
+                'SEXE' => $item->getSexeName(),
+                'POURCENTAGE' => $item->getScPercentage(),
+                'SPECIALE' => $item->isSpecial() ? 'OUI' : 'NON',
+                'FACULTE 1' => $item->getFacFirstName(),
+                'FILIERE 1' => $item->getFistChoiceName(),
+                'FACULTE 2' => $item->getFacSecondName(),
+                'FILIERE 2' => $item->getSecondChoiceName(),
+                'BORDEREAU' => $item->getSlipRef(),
+                'DATE' => $item->getSlipAt()?->format('Y-m-d H:i:s'),
+            ];
+        }
+        return $this->json($json, 200, [], ['groups' => ['r:can:coll']]);
     }
 }
