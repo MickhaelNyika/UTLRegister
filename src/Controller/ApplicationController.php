@@ -204,7 +204,7 @@ class ApplicationController extends AbstractController
                 'FACULTE 2' => $item->getFacSecondName(),
                 'FILIERE 2' => $item->getSecondChoiceName(),
                 'BORDEREAU' => $item->getSlipRef(),
-                'DATE' => $item->getSlipAt()?->format('Y-m-d H:i:s'),
+                'DATE' => $item->getSlipAt()?->format('Y-m-d'),
             ];
         }
         return $this->json($json, 200, [], ['groups' => ['r:can:coll']]);
