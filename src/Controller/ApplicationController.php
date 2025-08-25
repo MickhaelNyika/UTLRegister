@@ -187,7 +187,7 @@ class ApplicationController extends AbstractController
     #[IsGranted("ROLE_PRIME")]
     public function ab(DbCandidatesRepository $repo): JsonResponse
     {
-        $data = $repo->findBy(['verified' => true], ['id' => 'ASC']);
+        $data = $repo->findBy(['isVerified' => true], ['id' => 'ASC']);
         $json = [];
 
         foreach ($data as $item) {
