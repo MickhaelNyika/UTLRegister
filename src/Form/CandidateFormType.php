@@ -218,7 +218,7 @@ class CandidateFormType extends AbstractType
                     'placeholder' => '2000',
                     'class' => 'form-control-sm',
                     'min' => 1960,
-                    'max' => 2024
+                    'max' => 2025
                 ]
             ])
             ->add('addNumber', IntegerType::class, [

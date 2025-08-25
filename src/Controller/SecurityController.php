@@ -2,14 +2,34 @@
 
 namespace App\Controller;
 
+use App\Entity\DbUsers;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    #[Route(path: '/utlRegister/login', name: 'app_login')]
+    /*
+    #[Route('/data/login', name: 'api_login', methods: ['POST'])]
+    public function index(#[CurrentUser] ?DbUsers $user): Response
+    {
+        if (null === $user) {
+            return $this->json([
+                'message' => 'missing credentials',
+                ], Response::HTTP_UNAUTHORIZED);
+        }
+
+        $token = 'token' . uniqid();
+        return $this->json([
+            'user'  => $user->getUserIdentifier(),
+            'token' => $token,
+          ]);
+      }
+    */
+
+    #[Route(path: '/utlRegister8888888888/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // if ($this->getUser()) {
@@ -24,7 +44,7 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
-    #[Route(path: '/utlRegister/logout', name: 'app_logout')]
+    #[Route(path: '/utlRegister88888888888888/logout', name: 'app_logout')]
     public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');

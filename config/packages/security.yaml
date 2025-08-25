@@ -28,19 +28,31 @@ security:
                 path: app_admin_logout
                 target: app_home
 
-        main:
-            lazy: true
-            provider: app_user_provider
-            custom_authenticator: App\Security\UserAuthenticator
-            logout:
-                path: app_logout
+            login_throttling:
+                max_attempts: 3          # per minute ...
+                interval: '15 minutes' # ... or in a custom period
+
+            # use a custom rate limiter via its service ID
+            #login_throttling:
+                #limiter: app.my_login_rate_limiter
+
+        api:
+            pattern: ^/data
+            stateless: true
+            custom_authenticators:
+                - App\Security\ApiKeyAuthenticator
+            #lazy: true
+            #provider: app_user_provider
+            #custom_authenticator: App\Security\UserAuthenticator
+            #logout:
+                #path: app_logout
                 # where to redirect after logout
                 # target: app_any_route
 
-            remember_me:
-                secret: '%kernel.secret%'
-                lifetime: 604800
-                path: /
+            #remember_me:
+                #secret: '%kernel.secret%'
+                #lifetime: 604800
+                #path: /
                 # by default, the feature is enabled by checking a checkbox in the
                 # login form, uncomment the following line to always enable it.
                 #always_remember_me: true
@@ -56,6 +68,7 @@ security:
     access_control:
         - { path: ^/global/login, roles: PUBLIC_ACCESS }
         - { path: ^/global, roles: ROLE_PRIME }
+        - { path: ^/data, roles: ROLE_USER }
     #access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }

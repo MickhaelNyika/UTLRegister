@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\DbApiKeys;
 use App\Entity\DbConditions;
 use App\Entity\DbCarousels;
 use App\Entity\DbFaculties;
@@ -95,6 +96,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linktoRoute('Les confirmations', 'fa fa-download', 'app_excel_export_register')->setPermission('ROLE_ADMIN'),
             MenuItem::linktoRoute('Télécharger Pdf', 'fa fa-download', 'app_pdf_generator_down'),
         ]);
+        yield MenuItem::linkToCrud('Clés api', 'fas fa-key', DbApiKeys::class)->setPermission('ROLE_ROOT');
         yield MenuItem::linkToCrud('Users', 'fas fa-users', DbUsers::class)->setPermission('ROLE_ROOT');
         yield MenuItem::subMenu('Configuration', 'fas fa-gear')->setSubItems([
             MenuItem::linkToCrud('Etat civil', 'fas fa-list', DbMaritalStatus::class),

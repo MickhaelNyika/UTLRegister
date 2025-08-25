@@ -11,6 +11,7 @@
 namespace App\EventSubscriber;
 
 
+use App\Entity\DbApiKeys;
 use App\Entity\DbConditions;
 use App\Entity\DbUsers;
 use App\Entity\DbCandidates;
@@ -92,6 +93,13 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         if($entity instanceof DbCandidates){
             $this->logAction($event, 'delete');
             $sql = 'SET @num := 0; UPDATE db_candidates SET id = @num := (@num + 1); ALTER TABLE db_candidates AUTO_INCREMENT = 1;';
+            $con = $this->manager->getConnection();
+            $con->executeQuery($sql);
+        }
+
+        if($entity instanceof DbApiKeys){
+            $this->logAction($event, 'delete');
+            $sql = 'SET @num := 0; UPDATE db_api_keys SET id = @num := (@num + 1); ALTER TABLE db_api_keys AUTO_INCREMENT = 1;';
             $con = $this->manager->getConnection();
             $con->executeQuery($sql);
         }

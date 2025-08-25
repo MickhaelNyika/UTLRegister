@@ -183,11 +183,11 @@ class ApplicationController extends AbstractController
         return new JsonResponse(['data' => $data]);
     }
 
-    #[Route('/data/ab', name: 'data_ab_index', methods: ['GET'])]
+    #[Route('/data/application', name: 'data_ab_index', methods: ['GET'])]
     #[IsGranted("ROLE_PRIME")]
     public function ab(DbCandidatesRepository $repo): JsonResponse
     {
-        $data = $repo->findAll();
+        $data = $repo->findBy(['verified' => true], ['id' => 'ASC']);
         $json = [];
 
         foreach ($data as $item) {

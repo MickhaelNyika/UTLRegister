@@ -38,6 +38,17 @@ class DbUsers implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private bool $isVerified = false;
 
+    /**
+     * @var Collection<int, DbApiKeys>
+     */
+    #[ORM\OneToMany(targetEntity: DbApiKeys::class, mappedBy: 'user')]
+    private Collection $apiKeys;
+
+    public function __construct()
+    {
+        $this->apiKeys = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -122,6 +133,36 @@ class DbUsers implements UserInterface, PasswordAuthenticatedUserInterface
     public function setVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DbApiKeys>
+     */
+    public function getApiKeys(): Collection
+    {
+        return $this->apiKeys;
+    }
+
+    public function addApiKey(DbApiKeys $apiKey): static
+    {
+        if (!$this->apiKeys->contains($apiKey)) {
+            $this->apiKeys->add($apiKey);
+            $apiKey->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeApiKey(DbApiKeys $apiKey): static
+    {
+        if ($this->apiKeys->removeElement($apiKey)) {
+            // set the owning side to null (unless already changed)
+            if ($apiKey->getUser() === $this) {
+                $apiKey->setUser(null);
+            }
+        }
 
         return $this;
     }
